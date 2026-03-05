@@ -1,0 +1,74 @@
+<mujoco model="xarm">
+  <option timestep="0.002" gravity="0 0 -9.81"/>
+  <compiler angle="radian" meshdir="../meshes" texturedir="../meshes"/>
+  <size nuserdata="0" njmax="200" nconmax="200"/>
+
+  <default>
+    <geom rgba="0.7 0.7 0.7 1" contype="1" conaffinity="1"
+          condim="3" friction="0.8 0.1 0.04" solref="0.002 1" solimp="0.8 0.8 0.01"/>
+    <joint type="hinge" damping="1.0" armature="0.01" limited="true"/>
+    <motor ctrllimited="true" ctrlrange="-3.14 3.14" gear="1"/>
+  </default>
+
+  <asset>
+    <mesh name="base_link" file="../meshes/base_link.STL"/>
+    <mesh name="arm_1_link" file="../meshes/arm_link1.STL"/>
+    <mesh name="arm_2_link" file="../meshes/arm_link2.STL"/>
+    <mesh name="arm_3_link" file="../meshes/arm_link3.STL"/>
+    <mesh name="arm_4_link" file="../meshes/arm_link4.STL"/>
+    <mesh name="arm_5_link" file="../meshes/arm_link5.STL"/>
+    <mesh name="arm_6_link" file="../meshes/arm_link6.STL"/>
+    <mesh name="gripper_1_link" file="../meshes/gipper_link1.STL"/>
+    <mesh name="gripper_2_link" file="../meshes/gipper_link2.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" type="plane" size="5 5 0.1" pos="0 0 0" rgba="0.9 0.9 0.9 1"/>
+    <body name="base_link" pos="0 0 0.05">
+      <geom type="mesh" mesh="base_link" density="500"/>
+      <body name="arm_1_link" pos="0 0 0.14">
+        <geom type="mesh" mesh="arm_1_link" density="300"/>
+        <joint name="arm_1_joint" axis="0 0 1" range="-2.094 2.094"/>
+        <body name="arm_2_link" pos="0 0 -0.095">
+          <geom type="mesh" mesh="arm_2_link" density="300"/>
+          <joint name="arm_2_joint" axis="0 0 1" range="-2.094 1.5708"/>
+          <body name="arm_3_link" pos="-0.018 0.145 0">
+            <geom type="mesh" mesh="arm_3_link" density="300"/>
+            <joint name="arm_3_joint" axis="0 0 1" range="-2.793 2.793"/>
+            <body name="arm_4_link" pos="0 0 -0.105">
+              <geom type="mesh" mesh="arm_4_link" density="300"/>
+              <joint name="arm_4_joint" axis="0 0 1" range="-1.92 1.92"/>
+              <body name="arm_5_link" pos="0 0.105 0">
+                <geom type="mesh" mesh="arm_5_link" density="300"/>
+                <joint name="arm_5_joint" axis="0 0 1" range="-2.793 2.793"/>
+                <body name="arm_6_link" pos="0 -0.0002 -0.075">
+                  <geom type="mesh" mesh="arm_6_link" density="300"/>
+                  <joint name="arm_6_joint" axis="0 0 1" range="-1.57 1.57"/>
+                  <body name="gripper_1_link" pos="-0.0001 0.06175 0.0115">
+                    <geom type="mesh" mesh="gripper_1_link" density="200"/>
+                    <joint name="gripper_1_joint" axis="0 0 1" range="0 0.698"/>
+                  </body>
+                  <body name="gripper_2_link" pos="-0.0001 0.06175 -0.012">
+                    <geom type="mesh" mesh="gripper_2_link" density="200"/>
+                    <joint name="gripper_2_joint" axis="0 0 1" range="0 0.698"/>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor name="arm_1_motor" joint="arm_1_joint" gear="80" ctrllimited="true" ctrlrange="-2.0 2.0"/>
+    <motor name="arm_2_motor" joint="arm_2_joint" gear="80" ctrllimited="true" ctrlrange="-2.0 2.0"/>
+    <motor name="arm_3_motor" joint="arm_3_joint" gear="60" ctrllimited="true" ctrlrange="-2.0 2.0"/>
+    <motor name="arm_4_motor" joint="arm_4_joint" gear="40" ctrllimited="true" ctrlrange="-2.0 2.0"/>
+    <motor name="arm_5_motor" joint="arm_5_joint" gear="30" ctrllimited="true" ctrlrange="-2.0 2.0"/>
+    <motor name="arm_6_motor" joint="arm_6_joint" gear="20" ctrllimited="true" ctrlrange="-2.0 2.0"/>
+    <motor name="gripper_1_motor" joint="gripper_1_joint" gear="15" ctrllimited="true" ctrlrange="0 0.7"/>
+    <motor name="gripper_2_motor" joint="gripper_2_joint" gear="15" ctrllimited="true" ctrlrange="0 0.7"/>
+  </actuator>
+</mujoco>

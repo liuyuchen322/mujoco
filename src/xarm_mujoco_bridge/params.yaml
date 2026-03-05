@@ -1,0 +1,43 @@
+# params.yaml for xArm Mujoco simulation
+
+arm:
+  joints:
+    - name: arm_1_joint
+      ctrl_range: [-1.570796327, 1.570796327]
+      home_pos: 0.0
+      damping: 1.0
+    - name: arm_2_joint
+      ctrl_range: [-1.92, 1.4]
+      home_pos: 0.0
+      damping: 1.0
+    - name: arm_3_joint
+      ctrl_range: [-2.0, 2.0]
+      home_pos: 0.0
+      damping: 1.0
+    - name: arm_4_joint
+      ctrl_range: [-1.57, 1.57]
+      home_pos: 0.0
+      damping: 1.0
+    - name: arm_5_joint
+      ctrl_range: [-2.0, 2.0]
+      home_pos: 0.0
+      damping: 1.0
+    - name: arm_6_joint
+      ctrl_range: [-1.57, 0.52]
+      home_pos: 0.0
+      damping: 1.0
+
+  gripper:
+    - name: gripper_1_joint
+      ctrl_range: [0.0, 0.7]
+      home_pos: 0.0
+      damping: 1.0
+    - name: gripper_2_joint
+      ctrl_range: [0.0, 0.7]
+      home_pos: 0.0
+      damping: 1.0
+
+simulation:
+  timestep: 0.002
+  gravity: [0, 0, -9.81]
+  friction: [0.9, 0.9]  # mu1, mu2
